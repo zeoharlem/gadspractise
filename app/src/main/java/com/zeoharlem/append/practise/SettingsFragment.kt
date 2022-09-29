@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
+import androidx.preference.SwitchPreferenceCompat
 
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -32,6 +33,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
             val newStatus   = newValue as String
             Toast.makeText(requireContext(), "this is my $newStatus", Toast.LENGTH_SHORT).show()
             true
+        }
+
+        val notificationPref    = findPreference<SwitchPreferenceCompat>(getString(R.string.key_new_msg_notif))
+        notificationPref?.summaryProvider   = Preference.SummaryProvider<SwitchPreferenceCompat> { switchPref ->
+            if(switchPref.isChecked)
+                "Status: ON"
+            else
+                "Status: OFF"
         }
     }
 

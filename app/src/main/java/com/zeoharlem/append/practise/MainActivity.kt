@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), SharedPreference
 
         // Link ActionBar with NavController
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val sharedPreference    = PreferenceManager.getDefaultSharedPreferences(this)
+        val publicInfo: Set<String>? = sharedPreference.getStringSet("key_public_info", null)
     }
 
     override fun onSupportNavigateUp(): Boolean {
